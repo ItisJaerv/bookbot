@@ -1,15 +1,19 @@
 from stats import countWords
 from stats import countChars
 from stats import sortByFreq
+import sys
 
 
 def main():
-    words = countWords("books/frankenstein.txt")
-    character = countChars("books/frankenstein.txt")
+    if len(sys.argv)!=2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    words = countWords(sys.argv[1])
+    character = countChars(sys.argv[1])
     charSorted = sortByFreq(character)
 
     print("============ BOOKBOT ============")
-    print("Analyzing book found at books/frankenstein.txt...")
+    print("Analyzing book found at "+sys.argv[1])
     print("----------- Word Count ----------")
     print("Found", words, "total words")
     print("--------- Character Count -------")
